@@ -4,9 +4,9 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-800 text-white py-10">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between space-y-8 md:space-y-0">
+        <div className="flex flex-col md:flex-row justify-between space-y-8 md:space-y-8 gap-1">
           {/* Logo and Description */}
-          <div className="flex-1">
+          <div className="flex-1  content-center lg:mb-11">
             <h2 className="text-2xl font-bold mb-4">Strength Gear</h2>
             <p className="text-gray-400">
               Your trusted source for premium gym equipment and accessories to
@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Navigation Links */}
-          <div className="flex-1">
+          <div className="flex-1 md:py-3">
             <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
             <ul>
               <li className="mb-2">
