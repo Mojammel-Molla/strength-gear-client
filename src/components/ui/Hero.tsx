@@ -34,7 +34,10 @@ const Hero: React.FC = () => {
 
     <section
       className="relative bg-cover bg-center bg-no-repeat h-[93vh] flex items-center justify-center"
-      style={{ backgroundImage: 'url(https://via.placeholder.com/1920x1080)' }}
+      style={{
+        backgroundImage:
+          'url(https://shop.lifefitness.com/cdn/shop/files/HOMEPAGE_clubseriesplus-cardio_021224.jpg?v=1707766353&width=2800)',
+      }}
     >
       <div className="absolute inset-0 bg-black opacity-50"></div>{' '}
       {/* Overlay for better contrast */}
