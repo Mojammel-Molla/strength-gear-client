@@ -7,7 +7,6 @@ const App: React.FC = () => {
   return (
     <>
       <Navbar />
-      <h1 className="text-2xl font-bold text-center ">Vite + React</h1>
       <Outlet></Outlet>
     </>
   );
