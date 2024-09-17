@@ -1,3 +1,5 @@
+import { TeamMember } from '../src/types/Types';
+
 export const images = [
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd49_Zg_pTZLHSBene9oUJWZzrC_SCu-vYPA&s',
   'https://st3.depositphotos.com/8742290/17392/i/450/depositphotos_173929874-stock-photo-handsome-model-young-man-training.jpg',
@@ -14,4 +16,26 @@ export const images = [
 
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhWYzgcQBkPbIxUotOPwgtrjtSaziGLwsx_g&s',
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcwdTVj8PJZY7bBJ9qXG_ivPA9v9I1wlldhg&s',
+];
+
+export const teamMembers: TeamMember[] = [
+  {
+    name: 'John Doe',
+    role: 'Founder & CEO',
+    bio: 'John has over 20 years of experience in the fitness industry and is passionate about helping people achieve their health goals.',
+    image: 'https://source.unsplash.com/random/200x200?person1', // Example image, replace with actual
+  },
+  {
+    name: 'Jane Smith',
+    role: 'Chief Marketing Officer',
+    bio: 'Jane specializes in strategic marketing and branding, ensuring the company’s products are always at the forefront of the industry.',
+    image: 'https://source.unsplash.com/random/200x200?person2',
+  },
+  {
+    name: 'Michael Brown',
+    role: 'Lead Trainer',
+    bio: 'Michael is a certified fitness trainer with a passion for building personalized workout plans and ensuring top-notch customer satisfaction.',
+    image: 'https://source.unsplash.com/random/200x200?person3',
+  },
+  // Add more team members as needed
 ];
