@@ -1,9 +1,10 @@
 import React from 'react';
+import Cart from '../components/ui/Cart';
 
 const CartPage: React.FC = () => {
   return (
     <>
-      <h1>This is cart page</h1>
+      <Cart />
     </>
   );
 };

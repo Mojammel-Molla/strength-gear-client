@@ -55,3 +55,9 @@ export const fakeProducts = [
   { id: 7, name: 'Foam Roller', category: 'Fitness Accessories', price: '$25' },
   { id: 8, name: 'Bench Press', category: 'Weight Training', price: '$150' },
 ];
+
+export const initialCart = [
+  { id: 1, name: 'Dumbbells', price: 50, quantity: 1, stock: 5 },
+  { id: 2, name: 'Yoga Mat', price: 20, quantity: 2, stock: 2 },
+  { id: 3, name: 'Treadmill', price: 500, quantity: 1, stock: 0 },
+];
