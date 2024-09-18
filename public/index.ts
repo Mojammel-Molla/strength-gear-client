@@ -23,7 +23,8 @@ export const teamMembers: TeamMember[] = [
     name: 'John Doe',
     role: 'Founder & CEO',
     bio: 'John has over 20 years of experience in the fitness industry and is passionate about helping people achieve their health goals.',
-    image: 'https://source.unsplash.com/random/200x200?person1', // Example image, replace with actual
+    image:
+      'https://ifcci-events.com/wp-content/uploads/2017/10/speaker3-min.jpg',
   },
   {
     name: 'Jane Smith',
@@ -37,5 +38,20 @@ export const teamMembers: TeamMember[] = [
     bio: 'Michael is a certified fitness trainer with a passion for building personalized workout plans and ensuring top-notch customer satisfaction.',
     image: 'https://source.unsplash.com/random/200x200?person3',
   },
-  // Add more team members as needed
+];
+
+export const fakeProducts = [
+  { id: 1, name: 'Dumbbells', category: 'Weight Training', price: '$50' },
+  { id: 2, name: 'Yoga Mat', category: 'Yoga', price: '$20' },
+  { id: 3, name: 'Treadmill', category: 'Cardio', price: '$500' },
+  { id: 4, name: 'Exercise Bike', category: 'Cardio', price: '$300' },
+  { id: 5, name: 'Kettle bell', category: 'Weight Training', price: '$40' },
+  {
+    id: 6,
+    name: 'Resistance Bands',
+    category: 'Fitness Accessories',
+    price: '$15',
+  },
+  { id: 7, name: 'Foam Roller', category: 'Fitness Accessories', price: '$25' },
+  { id: 8, name: 'Bench Press', category: 'Weight Training', price: '$150' },
 ];

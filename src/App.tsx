@@ -6,11 +6,11 @@ import Footer from './components/ui/Footer';
 
 const App: React.FC = () => {
   return (
-    <>
+    <div className="">
       <Navbar />
       <Outlet />
       <Footer />
-    </>
+    </div>
   );
 };
 

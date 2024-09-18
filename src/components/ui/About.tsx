@@ -18,8 +18,8 @@ const About: React.FC = () => {
             Company Overview
           </h3>
           <p className="text-gray-600 leading-relaxed">
-            Established in [Year], our company has grown from a small startup to
-            a global leader in [industry]. We are committed to delivering
+            Established in 2024, our company has grown from a small startup to a
+            global leader in Fitness. We are committed to delivering
             high-quality products and services that meet the evolving needs of
             our customers. With a passionate team and a relentless drive for
             innovation, we strive to create lasting value and impact in every
@@ -35,8 +35,8 @@ const About: React.FC = () => {
           <p className="text-gray-600 leading-relaxed">
             Our mission is to empower individuals and businesses through
             innovative solutions and exceptional customer service. We aim to be
-            the leading provider of [products/services], improving the lives of
-            our customers and contributing positively to our community.
+            the leading provider of Fitness products, improving the lives of our
+            customers and contributing positively to our community.
           </p>
         </div>
 
@@ -46,7 +46,7 @@ const About: React.FC = () => {
             Our Vision
           </h3>
           <p className="text-gray-600 leading-relaxed">
-            Our vision is to revolutionize the [industry] by setting new
+            Our vision is to revolutionize the Fitness industry by setting new
             standards for excellence and innovation. We envision a future where
             our products and services are recognized globally for their quality,
             reliability, and positive impact on society.

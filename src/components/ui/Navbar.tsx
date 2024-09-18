@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,6 +8,31 @@ const Navbar: React.FC = () => {
     setIsOpen(!isOpen);
   };
 
+  const navlinks = (
+    <>
+      <Link to="/" className="hover:text-gray-300">
+        Home
+      </Link>
+      <Link to="/products" className="hover:text-gray-300">
+        Products
+      </Link>
+      <Link to="/product-management" className="hover:text-gray-300">
+        Product Management
+      </Link>
+      <Link to="/product-details" className="hover:text-gray-300">
+        Product Details
+      </Link>
+      <Link to="/cart" className="hover:text-gray-300">
+        Cart
+      </Link>
+      <Link to="/checkout" className="hover:text-gray-300">
+        Checkout
+      </Link>
+      <Link to="/about-us" className="hover:text-gray-300">
+        About Us
+      </Link>
+    </>
+  );
   return (
     <nav className="bg-gray-900 text-white shadow-lg">
       <div className="container mx-auto px-4">
@@ -49,29 +74,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Links - Hidden on Mobile */}
-          <div className="hidden lg:flex space-x-6">
-            <Link to="/" className="hover:text-gray-300">
-              Home
-            </Link>
-            <Link to="/products" className="hover:text-gray-300">
-              Products
-            </Link>
-            <Link to="/product-management" className="hover:text-gray-300">
-              Product Management
-            </Link>
-            <Link to="/product-details" className="hover:text-gray-300">
-              Product Details
-            </Link>
-            <Link to="/cart" className="hover:text-gray-300">
-              Cart
-            </Link>
-            <Link to="/checkout" className="hover:text-gray-300">
-              Checkout
-            </Link>
-            <Link to="/about-us" className="hover:text-gray-300">
-              About Us
-            </Link>
-          </div>
+          <div className="hidden lg:flex space-x-6">{navlinks}</div>
         </div>
 
         {/* Mobile Menu */}
@@ -116,13 +119,13 @@ const Navbar: React.FC = () => {
               >
                 Checkout
               </Link>
-              <Link
+              <NavLink
                 to="/about-us"
                 className="hover:text-gray-300"
                 onClick={toggleMenu}
               >
                 About Us
-              </Link>
+              </NavLink>
             </div>
           </div>
         )}
