@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { initialCart } from '../../../public';
+import { Link } from 'react-router-dom';
 
 const Cart: React.FC = () => {
   const [cart, setCart] = useState(initialCart);
@@ -40,9 +41,11 @@ const Cart: React.FC = () => {
     <div className="container mx-auto py-10 px-4">
       <div className="flex justify-between">
         <h1 className="text-3xl font-bold mb-6">Shopping Cart</h1>
-        <button className="bg-green-600 hover:bg-green-800 text-white font-medium py-2 px-4 rounded-md shadow-md transition duration-500 ease-in-out ">
-          Check Out
-        </button>
+        <Link to="/check-out">
+          <button className="bg-green-600 hover:bg-green-800 text-white font-medium py-2 px-4 rounded-md shadow-md transition duration-500 ease-in-out ">
+            Check Out
+          </button>
+        </Link>
       </div>
       {/* Cart Items */}
       {cart.length === 0 ? (

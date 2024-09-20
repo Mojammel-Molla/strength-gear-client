@@ -23,7 +23,7 @@ const Advertisement: React.FC = () => {
     const { onClick } = props;
     return (
       <div
-        className="absolute top-1/2 right-0 transform -translate-y-1/2 z-10 cursor-pointer"
+        className="absolute top-1/2 right-1/3 transform -translate-y-1/2 z-10 cursor-pointer"
         onClick={onClick}
       >
         <AiOutlineRight className="text-white text-xl md:text-2xl" />
@@ -36,7 +36,7 @@ const Advertisement: React.FC = () => {
     const { onClick } = props;
     return (
       <div
-        className="absolute top-1/2 left-0 transform -translate-y-1/2 z-10 cursor-pointer"
+        className="absolute top-1/2 left-1/3 transform -translate-y-1/2 z-10 cursor-pointer"
         onClick={onClick}
       >
         <AiOutlineLeft className="text-white text-xl md:text-2xl" />

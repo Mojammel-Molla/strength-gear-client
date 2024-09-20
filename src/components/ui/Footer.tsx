@@ -1,8 +1,14 @@
 import React from 'react';
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaTwitter,
+} from 'react-icons/fa6';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-800 text-white py-10">
+    <footer className="bg-gray-900 text-white py-10">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between space-y-8 md:space-y-8 gap-1">
           {/* Logo and Description */}
@@ -56,16 +62,16 @@ const Footer: React.FC = () => {
             <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
             <div className="flex space-x-4">
               <a href="https://facebook.com" className="hover:text-gray-300">
-                <i className="fab fa-facebook fa-lg"></i>
+                <FaFacebook />
               </a>
               <a href="https://twitter.com" className="hover:text-gray-300">
-                <i className="fab fa-twitter fa-lg"></i>
+                <FaTwitter />
               </a>
               <a href="https://instagram.com" className="hover:text-gray-300">
-                <i className="fab fa-instagram fa-lg"></i>
+                <FaInstagram />
               </a>
               <a href="https://linkedin.com" className="hover:text-gray-300">
-                <i className="fab fa-linkedin fa-lg"></i>
+                <FaLinkedin />
               </a>
             </div>
           </div>
