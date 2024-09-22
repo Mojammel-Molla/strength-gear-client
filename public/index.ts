@@ -1,4 +1,4 @@
-import { TeamMember } from '../src/types/Types';
+import { TeamMember } from '../src/types';
 
 export const images = [
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd49_Zg_pTZLHSBene9oUJWZzrC_SCu-vYPA&s',

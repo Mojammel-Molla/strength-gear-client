@@ -1,5 +1,5 @@
 import React from 'react';
-import { TeamMember } from '../../types/Types';
+import { TeamMember } from '../../types';
 
 const teamMembers: TeamMember[] = [
   {

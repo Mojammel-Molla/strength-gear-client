@@ -1,0 +1,60 @@
+import { useParams } from 'react-router-dom';
+import {
+  useAddToCartMutation,
+  useGetProductByIdQuery,
+} from '../redux/api/baseApi';
+
+const ProductDetails: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const { data: product, error, isLoading } = useGetProductByIdQuery(id!);
+  const [addToCart] = useAddToCartMutation();
+  console.log(product?.data);
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error fetching products</div>;
+  if (!product) return <div>No product found!</div>;
+
+  const handleAddToCart = async () => {
+    try {
+      await addToCart({ productId, quantity: 1 });
+      console.log('Product added to cart');
+    } catch (error) {
+      console.error('Failed to add product to cart', error);
+    }
+  };
+
+  return (
+    <div>
+      <div className="bg-white border rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 max-w-lg mx-auto my-10">
+        <img
+          src={product?.data?.imageUrl}
+          alt={product?.data.name}
+          className="h-48 w-full object-cover"
+        />
+        <div className="p-4">
+          <h2 className="text-lg font-bold text-gray-800">
+            {product?.data?.name}
+          </h2>
+          <p className="text-gray-600 mt-2">${product?.data?.price}</p>
+          <p className="text-sm text-gray-500 mt-2">
+            {product?.data?.description}
+          </p>
+          <p
+            className={`mt-3 font-semibold ${
+              product?.data?.inStock ? 'text-green-500' : 'text-red-500'
+            }`}
+          >
+            {product?.data?.inStock ? 'In Stock' : 'Out of Stock'}
+          </p>
+
+          <button
+            onClick={() => handleAddToCart(product?.data?._id)}
+            className="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
+          >
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default ProductDetails;
