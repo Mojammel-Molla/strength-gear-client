@@ -2,36 +2,6 @@ import React from 'react';
 
 const Hero: React.FC = () => {
   return (
-    // <section className="relative bg-gray-800 text-white">
-    //   <div className="container mx-auto flex flex-col md:flex-row items-center justify-between py-20 px-6 md:px-12 h-screen">
-    //     {/* Hero Text Section */}
-    //     <div className="flex-1 mb-12 md:mb-0">
-    //       <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-    //         Welcome to Our Product
-    //       </h1>
-    //       <p className="text-lg md:text-xl mb-8">
-    //         Discover the best features that help you stay fit, active, and
-    //         healthy.
-    //       </p>
-    //       <a
-    //         href="#shop-now"
-    //         className="inline-block px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg transition"
-    //       >
-    //         Shop Now
-    //       </a>
-    //     </div>
-
-    //     {/* Hero Image Section */}
-    //     <div className="flex-1">
-    //       <img
-    //         className="w-full h-auto rounded-lg shadow-lg object-cover"
-    //         src="https://via.placeholder.com/600x400"
-    //         alt="Hero"
-    //       />
-    //     </div>
-    //   </div>
-    // </section>
-
     <section
       className="relative bg-cover bg-center bg-no-repeat h-[93vh] flex items-center justify-center"
       style={{

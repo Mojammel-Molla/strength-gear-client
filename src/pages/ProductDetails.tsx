@@ -3,24 +3,31 @@ import {
   useAddToCartMutation,
   useGetProductByIdQuery,
 } from '../redux/api/baseApi';
+import { useDispatch } from 'react-redux';
 
 const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { data: product, error, isLoading } = useGetProductByIdQuery(id!);
+
   const [addToCart] = useAddToCartMutation();
-  console.log(product?.data);
+
+  const handleAddToCart = () => {
+    const cartData = {
+      name: product?.data.name,
+      price: product?.data?.price,
+      imageUrl: product?.data?.imageUrl,
+      category: product?.data?.description,
+      description: product?.data?.description,
+      inStock: true,
+      quantity: 1,
+    };
+
+    addToCart(cartData);
+  };
+
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error fetching products</div>;
   if (!product) return <div>No product found!</div>;
-
-  const handleAddToCart = async () => {
-    try {
-      await addToCart({ productId, quantity: 1 });
-      console.log('Product added to cart');
-    } catch (error) {
-      console.error('Failed to add product to cart', error);
-    }
-  };
 
   return (
     <div>
@@ -47,8 +54,12 @@ const ProductDetails: React.FC = () => {
           </p>
 
           <button
-            onClick={() => handleAddToCart(product?.data?._id)}
-            className="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors"
+            onClick={handleAddToCart}
+            className={`mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded-lg  transition-colors ${
+              product?.data?.inStock
+                ? 'hover:bg-blue-600'
+                : 'bg-gray-400 cursor-not-allowed'
+            }`}
           >
             Add to Cart
           </button>

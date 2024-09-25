@@ -61,3 +61,30 @@ export const initialCart = [
   { id: 2, name: 'Yoga Mat', price: 20, quantity: 2, stock: 2 },
   { id: 3, name: 'Treadmill', price: 500, quantity: 1, stock: 0 },
 ];
+
+export const benefits = [
+  {
+    id: 1,
+    title: 'Durability & Strength',
+    description:
+      'Our gear is made from high-quality, durable materials that last, even under intense use.',
+    imageUrl: '/path-to-image-1.jpg',
+    altText: 'Durability',
+  },
+  {
+    id: 2,
+    title: 'Enhanced Comfort',
+    description:
+      'Ergonomically designed to provide superior comfort during your workouts, preventing injuries.',
+    imageUrl: '/path-to-image-2.jpg',
+    altText: 'Comfort',
+  },
+  {
+    id: 3,
+    title: 'Versatility',
+    description:
+      'Ideal for various types of strength training, from power lifting to bodybuilding and more.',
+    imageUrl: '/path-to-image-3.jpg',
+    altText: 'Versatility',
+  },
+];

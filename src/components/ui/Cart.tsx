@@ -43,7 +43,7 @@ const Cart: React.FC = () => {
         <h1 className="text-3xl font-bold mb-6">Shopping Cart</h1>
         <Link to="/check-out">
           <button className="bg-green-600 hover:bg-green-800 text-white font-medium py-2 px-4 rounded-md shadow-md transition duration-500 ease-in-out ">
-            Check Out
+            Payment History
           </button>
         </Link>
       </div>
@@ -108,7 +108,7 @@ const Cart: React.FC = () => {
 
           {/* Proceed to Checkout */}
           <button
-            className={`mt-6 w-full py-3 rounded-md text-white ${
+            className={`mt-6 w-full mx-auto py-3 rounded-md text-white ${
               cart.some(item => item.stock === 0)
                 ? 'bg-gray-400 cursor-not-allowed'
                 : 'bg-blue-600 hover:bg-blue-700'

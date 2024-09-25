@@ -4,6 +4,7 @@ import { TProduct, TCartItem } from '../../types';
 export const baseApi = createApi({
   reducerPath: 'baseApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
+
   endpoints: builder => ({
     getProductById: builder.query<TProduct, string>({
       query: (id: string) => `/products/${id}`,
@@ -17,14 +18,11 @@ export const baseApi = createApi({
     }),
 
     // Add a product to the cart
-    addToCart: builder.mutation<
-      TCartItem,
-      { productId: string; quantity: number }
-    >({
-      query: ({ productId, quantity }) => ({
+    addToCart: builder.mutation({
+      query: data => ({
         url: '/cart',
         method: 'POST',
-        body: { productId, quantity },
+        body: { data },
       }),
     }),
 

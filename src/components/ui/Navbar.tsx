@@ -19,11 +19,9 @@ const Navbar: React.FC = () => {
       <Link to="/product-management" className="hover:text-gray-300">
         Product Management
       </Link>
-      <Link to="/product-details" className="hover:text-gray-300">
-        Product Details
-      </Link>
+
       <Link to="/cart" className="hover:text-gray-300">
-        Cart
+        Cart <sup className="text-green-500 font-bold">0</sup>
       </Link>
       <Link to="/checkout" className="hover:text-gray-300">
         Checkout
@@ -34,7 +32,7 @@ const Navbar: React.FC = () => {
     </>
   );
   return (
-    <nav className="bg-gray-900 text-white shadow-lg md:h-20 content-center">
+    <nav className="bg-gray-900 text-white shadow-lg md:h-20 content-center z-10">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           <div className="text-2xl font-bold italic">

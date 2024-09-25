@@ -1,4 +1,5 @@
 export type TProduct = {
+  data: any;
   _id: string;
   name: string;
   price: number;
@@ -17,6 +18,15 @@ export type TCartItem = {
   category: string;
   description: string;
   inStock: boolean;
+  quantity: number;
   createdAt?: string;
   updatedAt?: string;
+};
+
+export type TBenefit = {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl: string;
+  altText: string;
 };
