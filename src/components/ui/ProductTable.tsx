@@ -2,13 +2,18 @@ import React from 'react';
 import { useGetAllProductsQuery } from '../../redux/api/baseApi';
 
 const ProductTable: React.FC = () => {
-  const { data: products } = useGetAllProductsQuery({});
+  const { data: products } = useGetAllProductsQuery();
 
   const handleEdit = product => {};
 
-  const handleDelete = id => {
+  const handleDelete = async id => {
     if (window.confirm('Are you sure you want to delete this product?')) {
-      console.log(id);
+      // try {
+      //   await deleteFromCart(id).unwrap();
+      //   console.log('Product deleted successfully');
+      // } catch (error) {
+      //   console.error('Failed to delete the product:', error);
+      // }
     }
   };
   return (

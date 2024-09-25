@@ -1,18 +1,27 @@
 import { Link } from 'react-router-dom';
-import { useGetAllCartQuery } from '../../redux/api/baseApi';
+import {
+  useDeleteFromCartMutation,
+  useGetAllCartQuery,
+} from '../../redux/api/baseApi';
 
 const Cart: React.FC = () => {
-  const { data, error, isLoading } = useGetAllCartQuery({});
+  const { data, error } = useGetAllCartQuery({});
+  const [deleteFromCart, { isLoading, isError }] = useDeleteFromCartMutation();
   const cart = data?.data || [];
   console.log(cart);
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error fetching products</div>;
 
-  const handleDelete = id => {
-    // TODO: Implement delete product API call and handle success/error
-    console.log('Deleting product:', id);
+  const handleDelete = async id => {
+    if (window.confirm('Are you sure you want to delete this product?')) {
+      try {
+        await deleteFromCart(id).unwrap();
+        console.log('Product deleted successfully');
+      } catch (error) {
+        console.error('Failed to delete the product:', error);
+      }
+    }
   };
-
   // // Helper to calculate total price
   // const calculateTotalPrice = () => {
   //   return cart.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -96,7 +105,7 @@ const Cart: React.FC = () => {
               {/* Remove Button */}
               <button
                 className="text-red-500 ml-4"
-                onClick={() => handleDelete(item.id)}
+                onClick={() => handleDelete(item._id)}
               >
                 Remove
               </button>
@@ -106,7 +115,7 @@ const Cart: React.FC = () => {
           <div className="mt-8">
             <h3 className="text-2xl font-bold mb-4">Pricing Details</h3>
             <p className="text-lg">
-              Total Price:{' '}
+              Total Price:{' 100'}
               <span className="font-semibold">
                 {/* ${calculateTotalPrice().toFixed(2)} */}
               </span>

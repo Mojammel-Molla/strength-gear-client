@@ -6,7 +6,7 @@ interface ModalFormProps {
 }
 
 const ModalForm: React.FC<ModalFormProps> = ({ setIsModalOpen }) => {
-  const [addProduct, { isLoading, isError, data }] = useAddProductMutation();
+  const [addProduct, { isLoading, isError }] = useAddProductMutation();
 
   const [formData, setFormData] = useState({
     name: '',
