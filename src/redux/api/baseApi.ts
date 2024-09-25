@@ -4,10 +4,15 @@ import { TProduct, TCartItem } from '../../types';
 export const baseApi = createApi({
   reducerPath: 'baseApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
-
+  tagTypes: ['product', 'cart'],
   endpoints: builder => ({
-    getProductById: builder.query<TProduct, string>({
-      query: (id: string) => `/products/${id}`,
+    addProduct: builder.mutation({
+      query: product => ({
+        url: '/products/create',
+        method: 'POST',
+        body: product,
+      }),
+      invalidatesTags: ['product'],
     }),
 
     getAllProducts: builder.query<TProduct[], void>({
@@ -17,6 +22,10 @@ export const baseApi = createApi({
       }),
     }),
 
+    getProductById: builder.query<TProduct, string>({
+      query: (id: string) => `/products/${id}`,
+    }),
+
     // Add a product to the cart
     addToCart: builder.mutation({
       query: data => ({
@@ -24,6 +33,7 @@ export const baseApi = createApi({
         method: 'POST',
         body: { data },
       }),
+      invalidatesTags: ['cart'],
     }),
 
     // Delete a product from the cart
@@ -31,6 +41,12 @@ export const baseApi = createApi({
       query: (productId: string) => ({
         url: `/cart/${productId}`,
         method: 'DELETE',
+      }),
+    }),
+    getAllCart: builder.query({
+      query: () => ({
+        url: '/cart',
+        method: 'GET',
       }),
     }),
   }),
@@ -41,4 +57,6 @@ export const {
   useGetProductByIdQuery,
   useAddToCartMutation,
   useDeleteFromCartMutation,
+  useGetAllCartQuery,
+  useAddProductMutation,
 } = baseApi;

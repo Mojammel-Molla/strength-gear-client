@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { useGetAllCartQuery } from '../../redux/api/baseApi';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const { data, error, isLoading } = useGetAllCartQuery({});
+  const cart = data?.data || [];
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error fetching products</div>;
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -10,25 +16,58 @@ const Navbar: React.FC = () => {
 
   const navlinks = (
     <>
-      <Link to="/" className="hover:text-gray-300">
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          isActive
+            ? 'underline font-semibold text-blue-400'
+            : 'hover:text-gray-300'
+        }
+      >
         Home
-      </Link>
-      <Link to="/products" className="hover:text-gray-300">
+      </NavLink>
+      <NavLink
+        to="/products"
+        className={({ isActive }) =>
+          isActive
+            ? 'underline font-semibold text-blue-400'
+            : 'hover:text-gray-300'
+        }
+      >
         Products
-      </Link>
-      <Link to="/product-management" className="hover:text-gray-300">
+      </NavLink>
+      <NavLink
+        to="/product-management"
+        className={({ isActive }) =>
+          isActive
+            ? 'underline font-semibold text-blue-400'
+            : 'hover:text-gray-300'
+        }
+      >
         Product Management
-      </Link>
+      </NavLink>
 
-      <Link to="/cart" className="hover:text-gray-300">
-        Cart <sup className="text-green-500 font-bold">0</sup>
-      </Link>
-      <Link to="/checkout" className="hover:text-gray-300">
-        Checkout
-      </Link>
-      <Link to="/about-us" className="hover:text-gray-300">
+      <NavLink
+        to="/cart"
+        className={({ isActive }) =>
+          isActive
+            ? 'underline font-semibold text-blue-400'
+            : 'hover:text-gray-300'
+        }
+      >
+        Cart <sup className="text-green-500 font-bold">{cart.length}</sup>
+      </NavLink>
+
+      <NavLink
+        to="/about-us"
+        className={({ isActive }) =>
+          isActive
+            ? 'underline font-semibold text-blue-400'
+            : 'hover:text-gray-300'
+        }
+      >
         About Us
-      </Link>
+      </NavLink>
     </>
   );
   return (
@@ -77,7 +116,7 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="lg:hidden">
+          <div className="lg:hidden z-10">
             <div className="flex flex-col space-y-2 pb-4">
               <Link to="/" className="hover:text-gray-300" onClick={toggleMenu}>
                 Home
@@ -96,26 +135,13 @@ const Navbar: React.FC = () => {
               >
                 Product Management
               </Link>
-              <Link
-                to="/product-details"
-                className="hover:text-gray-300"
-                onClick={toggleMenu}
-              >
-                Product Details
-              </Link>
+
               <Link
                 to="/cart"
                 className="hover:text-gray-300"
                 onClick={toggleMenu}
               >
                 Cart
-              </Link>
-              <Link
-                to="/checkout"
-                className="hover:text-gray-300"
-                onClick={toggleMenu}
-              >
-                Checkout
               </Link>
               <NavLink
                 to="/about-us"

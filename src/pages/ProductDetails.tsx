@@ -13,6 +13,7 @@ const ProductDetails: React.FC = () => {
 
   const handleAddToCart = () => {
     const cartData = {
+      id: product?.data?._id,
       name: product?.data.name,
       price: product?.data?.price,
       imageUrl: product?.data?.imageUrl,

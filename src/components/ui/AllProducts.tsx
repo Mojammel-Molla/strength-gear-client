@@ -4,8 +4,8 @@ import { TProduct } from '../../types';
 import { Link } from 'react-router-dom';
 
 const ProductList: React.FC = () => {
-  const { data: products, error, isLoading } = useGetAllProductsQuery({});
-
+  const { data, error, isLoading } = useGetAllProductsQuery({});
+  const products = data?.data || [];
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error fetching products</div>;
 
@@ -15,7 +15,7 @@ const ProductList: React.FC = () => {
         All Products
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products?.data?.map((product: TProduct) => (
+        {products?.map((product: TProduct) => (
           <div
             key={product._id}
             className="bg-white border rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105"

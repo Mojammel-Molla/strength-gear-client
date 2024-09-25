@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
+import { useAddProductMutation } from '../../redux/api/baseApi';
 
 interface ModalFormProps {
   setIsModalOpen: (isOpen: boolean) => void;
 }
 
 const ModalForm: React.FC<ModalFormProps> = ({ setIsModalOpen }) => {
+  const [addProduct, { isLoading, isError, data }] = useAddProductMutation();
+
   const [formData, setFormData] = useState({
     name: '',
     category: '',
     description: '',
     imageUrl: '',
-    inStock: 'inStock', // Default value set to 'inStock'
+    inStock: true,
     price: '',
   });
 
@@ -23,9 +26,25 @@ const ModalForm: React.FC<ModalFormProps> = ({ setIsModalOpen }) => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Product Data:', formData);
+
+    const product = {
+      name: formData.name,
+      category: formData.category,
+      description: formData.description,
+      imageUrl: formData.imageUrl,
+      inStock: true,
+      price: formData.price,
+    };
+
+    try {
+      const response = await addProduct(product).unwrap();
+      console.log('Product added successfully:', response);
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error('Error adding product:', error);
+    }
   };
 
   return (
@@ -80,7 +99,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ setIsModalOpen }) => {
               />
             </div>
 
-            <div className="flex flex-col">
+            {/* <div className="flex flex-col">
               <label className="block text-gray-700 mb-2">Stock Status</label>
               <select
                 name="inStock"
@@ -91,7 +110,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ setIsModalOpen }) => {
                 <option value="inStock">In Stock</option>
                 <option value="outOfStock">Out of Stock</option>
               </select>
-            </div>
+            </div> */}
 
             <div>
               <label className="block text-gray-700">Price</label>
