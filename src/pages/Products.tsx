@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { fakeProducts } from '../../public';
+import { useGetAllProductsQuery } from '../redux/api/baseApi';
 
 const Products: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const { data, error, isLoading } = useGetAllProductsQuery();
+  const products = data?.data || [];
 
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error fetching products</div>;
   // Filter the products based on search term and category
-  const filteredProducts = fakeProducts.filter(product => {
+  const filteredProducts = products.filter(product => {
     const matchesSearch = product.name
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
@@ -37,10 +42,10 @@ const Products: React.FC = () => {
             onChange={e => setSelectedCategory(e.target.value)}
           >
             <option value="">All Categories</option>
-            <option value="Weight Training">Weight Training</option>
-            <option value="Yoga">Yoga</option>
+            <option value="Strength">Strength</option>
             <option value="Cardio">Cardio</option>
-            <option value="Fitness Accessories">Fitness Accessories</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Weight ">Weight</option>
           </select>
         </div>
       </div>

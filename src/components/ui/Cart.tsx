@@ -22,37 +22,15 @@ const Cart: React.FC = () => {
       }
     }
   };
-  // // Helper to calculate total price
-  // const calculateTotalPrice = () => {
-  //   return cart.reduce((total, item) => total + item.price * item.quantity, 0);
-  // };
+  // Helper to calculate total price
+  const calculateTotalPrice = () => {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
 
-  // // Handle quantity change (increase/decrease)
-  // const handleQuantityChange = (id: number, amount: number) => {
-  //   setCart(prevCart =>
-  //     prevCart.map(item =>
-  //       item.id === id
-  //         ? {
-  //             ...item,
-  //             quantity: Math.min(
-  //               Math.max(item.quantity + amount, 1),
-  //               item.stock
-  //             ), // Ensure quantity between 1 and stock
-  //           }
-  //         : item
-  //     )
-  //   );
-  // };
-
-  // // Remove item from cart
-  // const handleRemoveItem = (id: number) => {
-  //   const confirmRemove = window.confirm(
-  //     'Are you sure you want to remove this item?'
-  //   );
-  //   if (confirmRemove) {
-  //     setCart(prevCart => prevCart.filter(item => item.id !== id));
-  //   }
-  // };
+  // Handle quantity change (increase/decrease)
+  const handleQuantityChange = (id: number, amount: number) => {
+    console.log(id, amount);
+  };
 
   return (
     <div className="container mx-auto py-10 px-4">
@@ -86,7 +64,7 @@ const Cart: React.FC = () => {
               <div className="flex items-center space-x-4">
                 <button
                   className="p-2 bg-gray-300 rounded-md"
-                  // onClick={() => handleQuantityChange(item.id, -1)}
+                  onClick={() => handleQuantityChange(item._id, -1)}
                   disabled={item.quantity === 1}
                 >
                   -
@@ -94,7 +72,7 @@ const Cart: React.FC = () => {
                 <p>{item.quantity}</p>
                 <button
                   className="p-2 bg-gray-300 rounded-md"
-                  // onClick={() => handleQuantityChange(item.id, 1)}
+                  onClick={() => handleQuantityChange(item._id, 1)}
                   disabled={item.quantity === item.stock}
                 >
                   +
@@ -114,7 +92,7 @@ const Cart: React.FC = () => {
           <div className="mt-8">
             <h3 className="text-2xl font-bold mb-4">Pricing Details</h3>
             <p className="text-lg">
-              Total Price:{' 100'}
+              Total Price:${calculateTotalPrice()}
               <span className="font-semibold">
                 {/* ${calculateTotalPrice().toFixed(2)} */}
               </span>
