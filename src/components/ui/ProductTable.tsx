@@ -5,8 +5,9 @@ import {
 } from '../../redux/api/baseApi';
 import toast, { Toaster } from 'react-hot-toast';
 const ProductTable: React.FC = () => {
-  const { data: products } = useGetAllProductsQuery();
+  const { data } = useGetAllProductsQuery();
   const [deleteProduct, { isLoading, isError }] = useDeleteProductMutation();
+  const products = data?.data || [];
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error fetching products</div>;
 
@@ -36,7 +37,7 @@ const ProductTable: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {products?.data?.map(product => (
+          {products?.map(product => (
             <tr key={product?._id} className="border-b hover:bg-gray-50">
               <td className="px-4 py-2 md:px-6 md:py-4">{product.name}</td>
               <td className="px-4 py-2 md:px-6 md:py-4">${product.price}</td>

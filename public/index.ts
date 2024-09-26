@@ -68,7 +68,8 @@ export const benefits = [
     title: 'Durability & Strength',
     description:
       'Our gear is made from high-quality, durable materials that last, even under intense use.',
-    imageUrl: '/path-to-image-1.jpg',
+    imageUrl:
+      'https://images.ctfassets.net/ipjoepkmtnha/Fz6daxtRX7Ty9eVOb5VvB/9fd6593ed96154b390dbb9f8657e3965/plurima-multistation-business-carousel.jpg',
     altText: 'Durability',
   },
   {
@@ -76,7 +77,8 @@ export const benefits = [
     title: 'Enhanced Comfort',
     description:
       'Ergonomically designed to provide superior comfort during your workouts, preventing injuries.',
-    imageUrl: '/path-to-image-2.jpg',
+    imageUrl:
+      'https://img.edilportale.com/product-thumbs/h_SINTESI-AKUIS-550880-relc7106458.jpg',
     altText: 'Comfort',
   },
   {
@@ -84,7 +86,8 @@ export const benefits = [
     title: 'Versatility',
     description:
       'Ideal for various types of strength training, from power lifting to bodybuilding and more.',
-    imageUrl: '/path-to-image-3.jpg',
+    imageUrl:
+      'https://i5.walmartimages.com/asr/8e2295cd-6c3f-4dfd-bde7-44e70db5e6d6.ecdc04aeed95918c8c5ea4a2da39c3d0.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF',
     altText: 'Versatility',
   },
 ];

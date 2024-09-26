@@ -5,12 +5,12 @@ import {
 } from '../../redux/api/baseApi';
 
 const Cart: React.FC = () => {
-  const { data, error } = useGetAllCartQuery({});
-  const [deleteFromCart, { isLoading, isError }] = useDeleteFromCartMutation();
+  const { data } = useGetAllCartQuery([]);
   const cart = data?.data || [];
+  const [deleteFromCart, { isLoading, isError }] = useDeleteFromCartMutation();
   console.log(cart);
   if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error fetching products</div>;
+  if (isError) return <div>Error fetching products</div>;
 
   const handleDelete = async id => {
     if (window.confirm('Are you sure you want to delete this product?')) {
@@ -36,7 +36,7 @@ const Cart: React.FC = () => {
     <div className="container mx-auto py-10 px-4">
       <div className="flex justify-between">
         <h1 className="text-3xl font-bold mb-6">Shopping Cart</h1>
-        <Link to="">
+        <Link to="/payment-history">
           <button className="bg-green-600 hover:bg-green-800 text-white font-medium py-2 px-4 rounded-md shadow-md transition duration-500 ease-in-out ">
             Payment History
           </button>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAddProductMutation } from '../../redux/api/baseApi';
-
+import toast, { Toaster } from 'react-hot-toast';
 interface ModalFormProps {
   setIsModalOpen: (isOpen: boolean) => void;
 }
@@ -41,6 +41,9 @@ const ModalForm: React.FC<ModalFormProps> = ({ setIsModalOpen }) => {
     try {
       const response = await addProduct(product).unwrap();
       console.log('Product added successfully:', response);
+      toast.success('Product created successfully!', {
+        duration: 3000,
+      });
       setIsModalOpen(false);
     } catch (error) {
       console.error('Error adding product:', error);
@@ -142,6 +145,7 @@ const ModalForm: React.FC<ModalFormProps> = ({ setIsModalOpen }) => {
           </form>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };

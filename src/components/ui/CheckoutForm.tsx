@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {
+  useAddOrderMutation,
+  useGetAllCartQuery,
+} from '../../redux/api/baseApi';
+import toast, { Toaster } from 'react-hot-toast';
 
 const CheckoutForm = () => {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     address: '',
-    paymentMethod: 'cod', // Default to 'Cash on Delivery'
+    paymentMethod: 'cod',
   });
 
   const handleChange = (
@@ -19,26 +25,55 @@ const CheckoutForm = () => {
       [e.target.name]: e.target.value,
     });
   };
+  const { data } = useGetAllCartQuery([]);
+  const cart = data?.data || [];
+  console.log(cart);
+  const [addOrder, { isLoading, isError }] = useAddOrderMutation();
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error fetching products</div>;
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const totalPrice = () => {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
+  const handleOrder = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (formData.paymentMethod === 'cod') {
-      // Handle Cash on Delivery logic
-      console.log('Cash on Delivery selected');
-    } else {
-      // Handle Stripe payment logic
-      console.log('Stripe Payment selected');
-    }
+    const order = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      address: formData.address,
+      paymentMethod: formData.paymentMethod,
+      totalAmount: 1000,
+      order: [
+        cart.map(cart => {
+          return {
+            id: cart.id,
+            name: cart.name,
+          };
+        }),
+      ],
+    };
 
+    console.log(order);
+
+    try {
+      const response = await addOrder(order).unwrap();
+      console.log('Product added successfully:', response);
+      toast.success('Order created successfully!', {
+        duration: 3000,
+      });
+    } catch (error) {
+      console.error('Error adding product:', error);
+    }
     console.log('Form Data:', formData);
-    navigate('/');
+    // navigate('/');
   };
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md myy-8">
       <h2 className="text-2xl font-bold text-center mb-6">Checkout</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleOrder}>
         {/* User Details */}
         <h4 className="text-lg font-semibold mb-4">User Details</h4>
         <div className="mb-4">
@@ -148,6 +183,7 @@ const CheckoutForm = () => {
           Place Order
         </button>
       </form>
+      <Toaster />
     </div>
   );
 };

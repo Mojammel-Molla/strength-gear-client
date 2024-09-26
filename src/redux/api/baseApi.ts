@@ -4,7 +4,7 @@ import { TProduct } from '../../types';
 export const baseApi = createApi({
   reducerPath: 'baseApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
-  tagTypes: ['product', 'cart'],
+  tagTypes: ['product', 'cart', 'order'],
   endpoints: builder => ({
     //add new product
     addProduct: builder.mutation({
@@ -62,6 +62,23 @@ export const baseApi = createApi({
       }),
       providesTags: ['cart'],
     }),
+    //create new order
+    addOrder: builder.mutation({
+      query: order => ({
+        url: '/order',
+        method: 'POST',
+        body: order,
+      }),
+      invalidatesTags: ['order'],
+    }),
+    //get all product from the cart
+    getAllOrders: builder.query({
+      query: () => ({
+        url: '/orders',
+        method: 'GET',
+      }),
+      providesTags: ['order'],
+    }),
   }),
 });
 
@@ -73,4 +90,6 @@ export const {
   useGetAllCartQuery,
   useAddProductMutation,
   useDeleteProductMutation,
+  useAddOrderMutation,
+  useGetAllOrdersQuery,
 } = baseApi;

@@ -7,6 +7,7 @@ import CartPage from '../pages/CartPage';
 import CheckOut from '../pages/CheckOut';
 import ProductDetails from '../pages/ProductDetails';
 import ProductManagement from '../pages/ProductManagement';
+import PaymentHistory from '../pages/PaymentHistory';
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: '/check-out',
         element: <CheckOut />,
+      },
+      {
+        path: '/payment-history',
+        element: <PaymentHistory />,
       },
     ],
   },

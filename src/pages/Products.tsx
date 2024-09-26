@@ -45,7 +45,6 @@ const Products: React.FC = () => {
             <option value="Strength">Strength</option>
             <option value="Cardio">Cardio</option>
             <option value="Accessories">Accessories</option>
-            <option value="Weight ">Weight</option>
           </select>
         </div>
       </div>

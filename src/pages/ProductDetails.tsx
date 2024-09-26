@@ -48,7 +48,7 @@ const ProductDetails: React.FC = () => {
         <img
           src={product?.imageUrl}
           alt={product?.name}
-          className="h-48 w-full object-cover"
+          className="h-48 w-full "
         />
         <div className="p-4">
           <h2 className="text-lg font-bold text-gray-800">{product?.name}</h2>
@@ -67,7 +67,7 @@ const ProductDetails: React.FC = () => {
             className={`mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded-lg  transition-colors ${
               product?.inStock
                 ? 'hover:bg-blue-600'
-                : 'bg-gray-400 cursor-not-allowed'
+                : 'bg-gray-400 cursor-not-allowed disabled'
             }`}
           >
             Add to Cart

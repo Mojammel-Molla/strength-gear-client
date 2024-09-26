@@ -16,7 +16,7 @@ const Benefits: React.FC = () => {
             <img
               src={benefit.imageUrl}
               alt={benefit.altText}
-              className="w-20 h-20 mb-4"
+              className="size-80 mb-4"
             />
             <h3 className="font-bold text-xl">{benefit.title}</h3>
             <p className="text-gray-600 mt-2">{benefit.description}</p>

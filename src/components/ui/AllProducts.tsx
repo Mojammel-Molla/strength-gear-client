@@ -4,7 +4,7 @@ import { TProduct } from '../../types';
 import { Link } from 'react-router-dom';
 
 const ProductList: React.FC = () => {
-  const { data, error, isLoading } = useGetAllProductsQuery({});
+  const { data, error, isLoading } = useGetAllProductsQuery();
   const products = data?.data || [];
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error fetching products</div>;
@@ -23,7 +23,7 @@ const ProductList: React.FC = () => {
             <img
               src={product.imageUrl}
               alt={product.name}
-              className="h-48 w-full object-cover"
+              className="h-48 w-full "
             />
             <div className="p-4">
               <h2 className="text-lg font-bold text-gray-800">
