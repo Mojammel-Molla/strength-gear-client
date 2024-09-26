@@ -1,11 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { TProduct, TCartItem } from '../../types';
+import { TProduct } from '../../types';
 
 export const baseApi = createApi({
   reducerPath: 'baseApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
   tagTypes: ['product', 'cart'],
   endpoints: builder => ({
+    //add new product
     addProduct: builder.mutation({
       query: product => ({
         url: '/products/create',
@@ -14,24 +15,33 @@ export const baseApi = createApi({
       }),
       invalidatesTags: ['product'],
     }),
-
+    //get all product
     getAllProducts: builder.query<TProduct[], void>({
       query: () => ({
         url: '/products',
         method: 'GET',
       }),
+      providesTags: ['product'],
     }),
-
+    //get single product by id
     getProductById: builder.query<TProduct, string>({
       query: (id: string) => `/products/${id}`,
+    }),
+    //delete product by id
+    deleteProduct: builder.mutation({
+      query: (productId: string) => ({
+        url: `/products/${productId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['product'],
     }),
 
     // Add a product to the cart
     addToCart: builder.mutation({
-      query: data => ({
+      query: product => ({
         url: '/cart',
         method: 'POST',
-        body: { data },
+        body: product,
       }),
       invalidatesTags: ['cart'],
     }),
@@ -44,11 +54,13 @@ export const baseApi = createApi({
       }),
       invalidatesTags: ['cart'],
     }),
+    //get all product from the cart
     getAllCart: builder.query({
       query: () => ({
         url: '/cart',
         method: 'GET',
       }),
+      providesTags: ['cart'],
     }),
   }),
 });
@@ -60,4 +72,5 @@ export const {
   useDeleteFromCartMutation,
   useGetAllCartQuery,
   useAddProductMutation,
+  useDeleteProductMutation,
 } = baseApi;

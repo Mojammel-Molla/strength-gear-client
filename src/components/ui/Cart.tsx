@@ -78,8 +78,7 @@ const Cart: React.FC = () => {
                 <h2 className="text-xl font-semibold">{item.name}</h2>
                 <p className="text-gray-700">Price: ${item.price}</p>
                 <p className="text-gray-700">
-                  Stock:{' '}
-                  {item.stock ? `${item.stock} available` : 'Out of stock'}
+                  Stock: {item.stock ? 'Out of stock' : 'available'}
                 </p>
               </div>
 
