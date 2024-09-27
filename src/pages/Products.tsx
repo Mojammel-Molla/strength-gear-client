@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { fakeProducts } from '../../public';
 import { useGetAllProductsQuery } from '../redux/api/baseApi';
+import { Link } from 'react-router-dom';
 
 const Products: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -10,6 +10,7 @@ const Products: React.FC = () => {
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error fetching products</div>;
+
   // Filter the products based on search term and category
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name
@@ -21,9 +22,10 @@ const Products: React.FC = () => {
   });
 
   return (
-    <div className="container mx-auto py-10 px-4 lg:h-screen">
+    <div className="container mx-auto py-10 px-4 lg:min-h-screen">
+      {' '}
+      {/* Ensure min-height for the screen */}
       <h1 className="text-3xl font-bold mb-6">Products</h1>
-
       <div className="flex justify-between items-center mb-4">
         {/* Search Input */}
         <input
@@ -48,17 +50,41 @@ const Products: React.FC = () => {
           </select>
         </div>
       </div>
-
       {/* Product List */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-20">
+        {' '}
+        {/* Add margin at the bottom */}
         {filteredProducts.map(product => (
           <div
-            key={product.id}
-            className="border rounded-lg p-4 shadow hover:shadow-lg transition"
+            key={product._id}
+            className="bg-white border rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105"
           >
-            <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
-            <p className="text-gray-700">Category: {product.category}</p>
-            <p className="text-gray-700">Price: {product.price}</p>
+            <img
+              src={product.imageUrl}
+              alt={product.name}
+              className="h-48 w-full "
+            />
+            <div className="p-4">
+              <h2 className="text-lg font-bold text-gray-800">
+                {product.name}
+              </h2>
+              <p className="text-gray-600 mt-2">${product.price}</p>
+              <p className="text-sm text-gray-500 mt-2">
+                {product.description}
+              </p>
+              <p
+                className={`mt-3 font-semibold ${
+                  product.inStock ? 'text-green-500' : 'text-red-500'
+                }`}
+              >
+                {product.inStock ? 'In Stock' : 'Out of Stock'}
+              </p>
+              <Link to={`products/${product._id}`}>
+                <button className="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors">
+                  View Details
+                </button>
+              </Link>
+            </div>
           </div>
         ))}
       </div>
