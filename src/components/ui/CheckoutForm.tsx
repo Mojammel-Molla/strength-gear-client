@@ -27,7 +27,7 @@ const CheckoutForm = () => {
   };
   const { data } = useGetAllCartQuery([]);
   const cart = data?.data || [];
-  console.log(cart);
+  console.log('This is cart data', cart);
   const [addOrder, { isLoading, isError }] = useAddOrderMutation();
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error fetching products</div>;
@@ -44,18 +44,16 @@ const CheckoutForm = () => {
       phone: formData.phone,
       address: formData.address,
       paymentMethod: formData.paymentMethod,
-      totalAmount: 1000,
-      order: [
-        cart.map(cart => {
-          return {
-            id: cart.id,
-            name: cart.name,
-          };
-        }),
-      ],
+      totalAmount: totalPrice(),
+      order: cart.map((cartItem: { _id: string; name: string }) => {
+        console.log('Processing cart item:', cartItem);
+        return {
+          id: cartItem._id,
+          name: cartItem.name,
+        };
+      }),
     };
-
-    console.log(order);
+    console.log('Order object:', order);
 
     try {
       const response = await addOrder(order).unwrap();
@@ -67,7 +65,7 @@ const CheckoutForm = () => {
       console.error('Error adding product:', error);
     }
     console.log('Form Data:', formData);
-    // navigate('/');
+    navigate('/');
   };
 
   return (
